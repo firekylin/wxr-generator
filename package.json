@@ -1,0 +1,41 @@
+{
+  "name": "wxr-generator",
+  "version": "0.0.1",
+  "description": "XML(WXR) file generator for official WordPress Import Plugin.",
+  "main": "./lib",
+  "scripts": {
+    "compile": "babel --presets es2015,stage-1 --plugins transform-runtime src/ --out-dir lib/",
+    "prepublish": "npm run compile",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/firekylin/wxr-generator.git"
+  },
+  "keywords": [
+    "xml",
+    "wordpress",
+    "export",
+    "import",
+    "wxr",
+    "plugin",
+    "generator"
+  ],
+  "author": "lizheming <i@imnerd.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/firekylin/wxr-generator/issues"
+  },
+  "homepage": "https://github.com/firekylin/wxr-generator#readme",
+  "dependencies": {
+    "xmlbuilder": "^9.0.1"
+  },
+  "devDependencies": {
+    "babel": "^6.23.0",
+    "babel-cli": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-runtime": "^6.23.0"
+  }
+}
