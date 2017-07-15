@@ -1,7 +1,7 @@
 {
   "name": "wxr-generator",
   "version": "0.0.1",
-  "description": "XML(WXR) file generator for official WordPress Import Plugin.",
+  "description": "XML(WXR) file generator for fully support official WordPress Import Plugin.",
   "main": "./lib",
   "scripts": {
     "compile": "babel --presets es2015,stage-1 --plugins transform-runtime src/ --out-dir lib/",

@@ -18,6 +18,14 @@ module.exports = class Generator {
 
   }
 
+  /**
+   * id: user Id
+   * username: user login name
+   * email: user email
+   * display_name: user nickname
+   * first_name: user first name
+   * last_name: user last name
+   */
   addUser({id, username, email, display_name, first_name, last_name}) {
     let user = this.channel.ele('wp:author');
     user.ele('wp:author_id', {}, id);
@@ -28,6 +36,12 @@ module.exports = class Generator {
     user.ele('wp:author_last_name', {}, last_name);
   }
 
+  /**
+   * id: tag Id, if not provied, random ID will be generated.
+   * slug: tag slug. Used in URLS, e.g. "js-rocks"
+   * name: tag title, e.g. "JS"
+   * description: tag description string, default is empty.
+   */
   addTag({id, slug, name, description}) {
     let tag = this.channel.ele('wp:tag');
     tag.ele('wp:term_id', {}, id || Math.floor(Math.random() * 100000));
@@ -36,6 +50,13 @@ module.exports = class Generator {
     tag.ele('wp:tag_description', {}, description);
   }
 
+  /**
+   * id: category Id. If not provided, random ID will be generated.
+   * slug: category slug. Used in URLS, e.g. "js-rocks"
+   * name: category title, e.g. "Everything about JS"
+   * parent_id: category parent id if it existed.
+   * description: category description string, default is empty.
+  */
   addCategory({id, slug, name, parent_id, description}) {
     let category = this.channel.ele('wp:category');
     category.ele('wp:term_id', {}, id || Math.floor(Math.random() * 100000));
