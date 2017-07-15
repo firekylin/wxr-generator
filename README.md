@@ -115,3 +115,10 @@ require("fs").writeFile("export.xml", xmlString, function(err) {
   console.log("File was saved! Now it's time to import.")
 });
 ```
+## Contributing
+
+Contributions welcome!
+
+## License
+
+[MIT](https://github.com/firekylin/wxr-generator/blob/master/LICENSE)
