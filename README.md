@@ -1,5 +1,9 @@
 # wxr-generator
 
+[![npm](https://img.shields.io/npm/v/wxr-generator.svg?style=flat-square)]()
+[![](https://img.shields.io/github/issues-raw/firekylin/wxr-generator.svg?style=flat-square)]()
+[![license](https://img.shields.io/github/license/firekylin/wxr-generator.svg?style=flat-square)]()
+
 XML(WXR) file generator for fully support official [WordPress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Inspired By [node-wxr](https://github.com/f1nnix/node-wxr).
 
 ## Install
