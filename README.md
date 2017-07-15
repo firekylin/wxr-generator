@@ -1,6 +1,6 @@
 # wxr-generator
 
-XML(WXR) file generator for fully support official [WordPress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Inspired By [node-wxr](https://github.com/f1nnix/node-wxr), thank you very much!
+XML(WXR) file generator for fully support official [WordPress Import Plugin](https://wordpress.org/plugins/wordpress-importer/). Inspired By [node-wxr](https://github.com/f1nnix/node-wxr).
 
 ## Install
 
