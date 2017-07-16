@@ -3,6 +3,14 @@ const xmlbuilder = require('xmlbuilder');
 
 const rId = () => Math.floor(Math.random() * 100000);
 module.exports = class Generator {
+  /**
+   * name: site name
+   * url: site url
+   * description: site description
+   * language: site language, default is en-US
+   * base_site_url: same as url
+   * base_blog_url: same as url
+   */
   constructor({
     name,
     url,

@@ -29,15 +29,28 @@ console.log(importer.stringify());
 
 ## API
 
-### new Importer()
+### new Importer(options)
 
 Returns a new instance of Importer.
+
+- options: 
+   * name: site name
+   * url: site url
+   * description: site description
+   * language: site language, default is en-US
+   * base\_site\_url: same as url
+   * base\_blog\_url: same as url
 
 #### Example
 
 ```js
 var Importer = require('wxr-generator');
-var importer = new Importer();
+var importer = new Importer({
+  name: 'another wordpress blog',
+  url: 'http://test.wordpress.com',
+  description: 'this is another wordpress blog test',
+  language: 'en-US'
+});
 
 // importer.addPost(...)
 ```
