@@ -41,6 +41,47 @@ var importer = new Importer();
 
 // importer.addPost(...)
 ```
+### addPost(options)
+
+Adds new post for Importer object.
+
+- options:
+  * id: post Id, if not provied, random ID will be generated.
+  * url: post permalink url.
+  * slug: post slug name if it exists.
+  * date: post create time.
+  * title: post title.
+  * author: post author, it equals author's login name.
+  * content: post content
+  * summary: post summary
+  * comment_status: post comment status, default is `open`, it can be `open` or `close`.
+  * ping_status: post ping status, default is `open`, it can be `open` or `close`.
+  * password: post visit password if it should, default is empty.
+  * categories: post categories, it's an array item. Every item should has `slug` and `name` prototype.
+  * tags: post tags, it's an array item. Every item should has `slug` and `name` prototype.
+
+#### Example
+
+```js
+importer.addPost({
+  id: 1,
+  title: 'hello world',
+  url: 'http://localhost/hello-world.html',
+  slug: 'hello-world',
+  date: '2017-07-03 10:00:00',
+  author: 'admin',
+  content: 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
+  summary: 'Welcome',
+  comment_status: 'open',
+  ping_status: 'close',
+  password: '',
+  categories: [{slug: 'life', name: 'Life'}, {slug: 'wp', name: 'wordpress'}],
+  tags: [{slug: 'blog', name: 'Blog'}]
+})
+```
+### addPage(options)
+
+Adds new page for Importer object. All parameters are same as `addPost(options)`.
 
 ### addCategory(options)
 
@@ -98,6 +139,39 @@ Add new user for Importer object.
    * display_name: user nickname
    * first_name: user first name
    * last_name: user last name
+
+### addAttachment(options)
+
+Adds new attachment(image) for Importer object.
+
+- options: 
+   * id: attachment Id. If not provided, random ID will be generated.
+   * url: attachment absolute url.
+   * date: attachment create time.
+   * file: attachment relative path if it exist.
+   * title: attachment title.
+   * author: attachment uploader.
+   * description: attachment description.
+   * post_id: post id relate to the attachment.
+   * meta_data: other serialized attach meta data.
+
+#### Exmaples
+
+```js
+importer.addAttachment({
+  id: 5,
+  url: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Minka.jpg",
+  date: "2015-10-05 00:27:25",
+  file: "/wp-content/upload/2015/10/05/minka.jpg",
+  title: "Fig. 1. Cats and puppies",
+  author: "admin",
+  description: "Fig. 1. Cats and puppies",
+  post_id: 3
+})
+```
+### addComment(options)
+
+TODO
 
 ### stringify()
 
