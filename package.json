@@ -1,6 +1,6 @@
 {
   "name": "wxr-generator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "XML(WXR) file generator for fully support official WordPress Import Plugin.",
   "main": "./lib",
   "scripts": {
