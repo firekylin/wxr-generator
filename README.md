@@ -72,6 +72,7 @@ Adds new post for Importer object.
   * password: post visit password if it should, default is empty.
   * categories: post categories, it's an array item. Every item should has `slug` and `name` prototype.
   * tags: post tags, it's an array item. Every item should has `slug` and `name` prototype.
+  * image: id of attached image to use as featured image for this post
 
 #### Example
 
@@ -89,7 +90,8 @@ importer.addPost({
   ping_status: 'closed',
   password: '',
   categories: [{slug: 'life', name: 'Life'}, {slug: 'wp', name: 'wordpress'}],
-  tags: [{slug: 'blog', name: 'Blog'}]
+  tags: [{slug: 'blog', name: 'Blog'}],
+  image: 1000
 })
 ```
 ### addPage(options)
@@ -181,6 +183,37 @@ importer.addAttachment({
   description: "Fig. 1. Cats and puppies",
   post_id: 3
 })
+```
+
+```
+// Example of adding featured image with post
+let i = 100 // i should exist as the index of a loop
+const image = 'http://example.com/image.jpg'
+const imageId = (image) ? randomNum() : '' // use a different number range from i to avoid overlaps
+
+importer.addPost({
+  id: i,
+  title: 'title'
+  slug: 'slug',
+  date: '2020-01-01 00:00:00',
+  author: 'admin',
+  content: 'post content',
+  summary: 'excerpt',
+  comment_status: 'closed',
+  ping_status: 'closed', 
+  image: imageId
+}) 
+
+if(image){
+  importer.addAttatchment({
+    id: imageId,
+    url: image,
+    date: '2020-01-01 00:00:00',
+    title: 'title',
+    author: 'admin',
+    post_id: i
+ })
+}
 ```
 ### addComment(options)
 

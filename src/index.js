@@ -70,7 +70,8 @@ module.exports = class Generator {
     type = 'post',
     password = '',
     categories,
-    tags
+    tags,
+    image
   }) {
     let post = this.channel.ele('item');
     post.ele('title', {}, title);
@@ -103,6 +104,14 @@ module.exports = class Generator {
         domain: 'category',
         nicename: tag.slug
       }).cdata(tag.name));
+    }
+    if(image){
+      post.ele({
+        'wp:postmeta': [{
+          'wp:meta_key': '_thumbnail_id',
+          'wp:meta_value': image
+        }]
+      });
     }
   }
 
