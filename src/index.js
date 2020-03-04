@@ -20,7 +20,7 @@ module.exports = class Generator {
     base_blog_url
   }) {
     base_site_url = base_site_url || url;
-    base_log_url = base_blog_url || url;
+    base_blog_url = base_blog_url || url;
 
     this.xml = xmlbuilder.create('rss')
       .att('xmlns:excerpt', 'http://wordpress.org/export/1.2/expert')
@@ -70,7 +70,8 @@ module.exports = class Generator {
     type = 'post',
     password = '',
     categories,
-    tags
+    tags,
+    image
   }) {
     let post = this.channel.ele('item');
     post.ele('title', {}, title);
@@ -83,12 +84,13 @@ module.exports = class Generator {
     post.ele('excerpt:encoded').cdata(summary);
     post.ele('wp:post_id', {}, id);
     post.ele('wp:post_date').cdata(date);
-    post.ele('wp:comment_status', {}, comment_status);
-    post.ele('wp:ping_status', {}, ping_status);
+    post.ele('wp:comment_status').cdata(comment_status);
+    post.ele('wp:ping_status').cdata(ping_status);
     post.ele('post_name').cdata(title);
     post.ele('wp:status').cdata(status);
     post.ele('wp:post_parent', {}, 0);
     post.ele('wp:menu_order', {}, 0);
+    post.ele('wp:post_type', {}, type);
     post.ele('wp:post_password').cdata(password);
     post.ele('wp:is_sticky', {}, 0);
     if(Array.isArray(categories)) {
@@ -102,6 +104,14 @@ module.exports = class Generator {
         domain: 'category',
         nicename: tag.slug
       }).cdata(tag.name));
+    }
+    if(image){
+      post.ele({
+        'wp:postmeta': [{
+          'wp:meta_key': '_thumbnail_id',
+          'wp:meta_value': image
+        }]
+      });
     }
   }
 
@@ -178,7 +188,7 @@ module.exports = class Generator {
    * post_id: post id relate to the attachment.
    * meta_data: other serialized attach meta data.
    */
-  addAttatchment({
+  addAttachment({
     id = rId(),
     url, 
     date, 
@@ -202,7 +212,7 @@ module.exports = class Generator {
     attach.ele('dc:creator').cdata(author);
     attach.ele('description').cdata(description);
     attach.ele('content:encoded').cdata(description);
-    attach.ele('excerpt:encoded').cdata(caption);
+    attach.ele('excerpt:encoded').cdata(description);
     attach.ele('wp:post_id', {}, id);
     attach.ele('wp:post_date').cdata(date);
     attach.ele('wp:comment_status').cdata(comment_status);
@@ -211,11 +221,11 @@ module.exports = class Generator {
     attach.ele('wp:status').cdata('inherit');
     attach.ele('wp:post_parent', {}, post_id);
     attach.ele('wp:menu_order', {}, 0);
-    attach.ele('wp:post_type').cdata('attachment');
+    attach.ele('wp:post_type', {}, 'attachment');
     attach.ele('wp:post_password').cdata('');
     attach.ele('wp:is_sticky', {}, 0);
-    attach.ele('wp:attachment_url', {}, url);
-    attach.create({
+    attach.ele('wp:attachment_url').cdata(url);
+    attach.ele({
       'wp:postmeta': [
         {
           'wp:meta_key': '_wp_attached_file',
@@ -227,7 +237,7 @@ module.exports = class Generator {
         },
         {
           'wp:meta_key': '_wp_attachment_image_alt',
-          'wp:meta_value': alt
+          'wp:meta_value': title
         }
       ]
     });
@@ -239,7 +249,7 @@ module.exports = class Generator {
 
   stringify() {
     return this.xml.end({
-      pretty: true, 
+      pretty: false, 
       indent: "    ", 
       newline: "\n"
     });
