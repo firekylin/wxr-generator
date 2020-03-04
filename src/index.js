@@ -20,7 +20,7 @@ module.exports = class Generator {
     base_blog_url
   }) {
     base_site_url = base_site_url || url;
-    base_log_url = base_blog_url || url;
+    base_blog_url = base_blog_url || url;
 
     this.xml = xmlbuilder.create('rss')
       .att('xmlns:excerpt', 'http://wordpress.org/export/1.2/expert')
