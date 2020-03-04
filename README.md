@@ -67,8 +67,8 @@ Adds new post for Importer object.
   * author: post author, it equals author's login name.
   * content: post content
   * summary: post summary
-  * comment_status: post comment status, default is `open`, it can be `open` or `close`.
-  * ping_status: post ping status, default is `open`, it can be `open` or `close`.
+  * comment_status: post comment status, default is `open`, it can be `open` or `closed`.
+  * ping_status: post ping status, default is `open`, it can be `open` or `closed`.
   * password: post visit password if it should, default is empty.
   * categories: post categories, it's an array item. Every item should has `slug` and `name` prototype.
   * tags: post tags, it's an array item. Every item should has `slug` and `name` prototype.
@@ -86,7 +86,7 @@ importer.addPost({
   content: 'Welcome to WordPress. This is your first post. Edit or delete it, then start writing!',
   summary: 'Welcome',
   comment_status: 'open',
-  ping_status: 'close',
+  ping_status: 'closed',
   password: '',
   categories: [{slug: 'life', name: 'Life'}, {slug: 'wp', name: 'wordpress'}],
   tags: [{slug: 'blog', name: 'Blog'}]

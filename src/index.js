@@ -83,12 +83,13 @@ module.exports = class Generator {
     post.ele('excerpt:encoded').cdata(summary);
     post.ele('wp:post_id', {}, id);
     post.ele('wp:post_date').cdata(date);
-    post.ele('wp:comment_status', {}, comment_status);
-    post.ele('wp:ping_status', {}, ping_status);
+    post.ele('wp:comment_status').cdata(comment_status);
+    post.ele('wp:ping_status').cdata(ping_status);
     post.ele('post_name').cdata(title);
     post.ele('wp:status').cdata(status);
     post.ele('wp:post_parent', {}, 0);
     post.ele('wp:menu_order', {}, 0);
+    post.ele('wp:post_type', {}, type);
     post.ele('wp:post_password').cdata(password);
     post.ele('wp:is_sticky', {}, 0);
     if(Array.isArray(categories)) {
@@ -211,10 +212,10 @@ module.exports = class Generator {
     attach.ele('wp:status').cdata('inherit');
     attach.ele('wp:post_parent', {}, post_id);
     attach.ele('wp:menu_order', {}, 0);
-    attach.ele('wp:post_type').cdata('attachment');
+    attach.ele('wp:post_type', {}, 'attachment');
     attach.ele('wp:post_password').cdata('');
     attach.ele('wp:is_sticky', {}, 0);
-    attach.ele('wp:attachment_url', {}, url);
+    attach.ele('wp:attachment_url').cdata(url);
     attach.ele({
       'wp:postmeta': [
         {
@@ -239,7 +240,7 @@ module.exports = class Generator {
 
   stringify() {
     return this.xml.end({
-      pretty: true, 
+      pretty: false, 
       indent: "    ", 
       newline: "\n"
     });
