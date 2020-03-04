@@ -178,7 +178,7 @@ module.exports = class Generator {
    * post_id: post id relate to the attachment.
    * meta_data: other serialized attach meta data.
    */
-  addAttatchment({
+  addAttachment({
     id = rId(),
     url, 
     date, 
@@ -202,7 +202,7 @@ module.exports = class Generator {
     attach.ele('dc:creator').cdata(author);
     attach.ele('description').cdata(description);
     attach.ele('content:encoded').cdata(description);
-    attach.ele('excerpt:encoded').cdata(caption);
+    attach.ele('excerpt:encoded').cdata(description);
     attach.ele('wp:post_id', {}, id);
     attach.ele('wp:post_date').cdata(date);
     attach.ele('wp:comment_status').cdata(comment_status);
@@ -215,7 +215,7 @@ module.exports = class Generator {
     attach.ele('wp:post_password').cdata('');
     attach.ele('wp:is_sticky', {}, 0);
     attach.ele('wp:attachment_url', {}, url);
-    attach.create({
+    attach.ele({
       'wp:postmeta': [
         {
           'wp:meta_key': '_wp_attached_file',
@@ -227,7 +227,7 @@ module.exports = class Generator {
         },
         {
           'wp:meta_key': '_wp_attachment_image_alt',
-          'wp:meta_value': alt
+          'wp:meta_value': title
         }
       ]
     });
